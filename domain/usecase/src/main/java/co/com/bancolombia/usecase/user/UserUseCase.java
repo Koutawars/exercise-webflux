@@ -12,8 +12,13 @@ public class UserUseCase {
   private final UserRepository userRepository;
 
   public Mono<User> saveUser(int id) {
-    return directoryActiveRepository
-        .getUserById(id)
+    return userRepository
+        .findById(id)
+        .switchIfEmpty(directoryActiveRepository.getUserById(id))
         .flatMap(userRepository::save);
+  }
+
+  public Mono<User> getUserById(int id) {
+    return userRepository.findById(id);
   }
 }

@@ -16,7 +16,7 @@ public class UserMapper {
         .build();
   }
 
-  public static User toModel(UserEntity entity) {
+  public static User toDomain(UserEntity entity) {
     return User.builder()
         .id(entity.getId())
         .email(entity.getEmail())

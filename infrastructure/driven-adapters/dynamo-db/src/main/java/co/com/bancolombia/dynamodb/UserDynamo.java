@@ -26,4 +26,15 @@ public class UserDynamo implements UserRepository {
     return Mono.fromFuture(userTable.putItem(userEntity))
         .thenReturn(user);
   }
+
+  @Override
+  public Mono<User> findById(int id) {
+    return Mono.fromFuture(userTable.getItem(UserEntity.builder().id(id).build()))
+        .flatMap(entity -> {
+          if (entity == null) {
+            return Mono.empty();
+          }
+          return Mono.just(UserMapper.toDomain(entity));
+        });
+  }
 }

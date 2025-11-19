@@ -18,4 +18,9 @@ public class Handler {
         .flatMap(body -> userUseCase.saveUser(body.getId()))
         .flatMap(user -> ServerResponse.ok().bodyValue(user));
   }
+
+  public Mono<ServerResponse> listenGETUserById(ServerRequest serverRequest) {
+    return userUseCase.getUserById(Integer.parseInt(serverRequest.pathVariable("id")))
+        .flatMap(user -> ServerResponse.ok().bodyValue(user));
+  }
 }
