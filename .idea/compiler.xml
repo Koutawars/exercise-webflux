@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.42/8365263844ebb62398e0dc33057ba10ba472d3b8/lombok-1.18.42.jar" />
+        </processorPath>
+        <module name="ScaffoldQuickStart.reactive-web.main" />
+        <module name="ScaffoldQuickStart.dynamo-db.test" />
+        <module name="ScaffoldQuickStart.usecase.test" />
+        <module name="ScaffoldQuickStart.rest-consumer.test" />
+        <module name="ScaffoldQuickStart.app-service.test" />
+        <module name="ScaffoldQuickStart.app-service.main" />
+        <module name="ScaffoldQuickStart.metrics.test" />
+        <module name="ScaffoldQuickStart.dynamo-db.main" />
+        <module name="ScaffoldQuickStart.rest-consumer.main" />
+        <module name="ScaffoldQuickStart.usecase.main" />
+        <module name="ScaffoldQuickStart.metrics.main" />
+        <module name="ScaffoldQuickStart.model.test" />
+        <module name="ScaffoldQuickStart.reactive-web.test" />
+        <module name="ScaffoldQuickStart.model.main" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="21" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ScaffoldQuickStart" options="-Amapstruct.suppressGeneratorTimestamp=true" />
+      <module name="ScaffoldQuickStart.app-service" options="-parameters" />
+      <module name="ScaffoldQuickStart.app-service.main" options="-parameters" />
+      <module name="ScaffoldQuickStart.app-service.test" options="-parameters" />
+      <module name="ScaffoldQuickStart.main" options="-Amapstruct.suppressGeneratorTimestamp=true" />
+      <module name="ScaffoldQuickStart.test" options="-Amapstruct.suppressGeneratorTimestamp=true" />
+    </option>
+  </component>
+</project>

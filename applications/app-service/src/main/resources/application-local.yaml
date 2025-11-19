@@ -1,0 +1,12 @@
+aws:
+  dynamodb:
+    endpoint: "http://localstack:4566"
+    userTable: "userTable"
+  region: "us-east-1"
+  accessKey: "dummy"
+  secretKey: "dummy"
+
+adapter:
+  dynamodb:
+    userTable: "userTable"
+    region: "us-east-1"
