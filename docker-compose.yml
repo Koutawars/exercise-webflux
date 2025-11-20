@@ -10,6 +10,11 @@ services:
     volumes:
       - "./localstack-data:/var/lib/localstack"
 
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
   init-db:
     image: amazon/aws-cli:latest
     depends_on:
@@ -34,5 +39,8 @@ services:
       - AWS_REGION=us-east-1
       - AWS_ACCESS_KEY=dummy
       - AWS_SECRET_KEY=dummy
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
     depends_on:
       - init-db
+      - redis

@@ -12,7 +12,7 @@ buildCache {
     }
 }
 
-rootProject.name = 'ScaffoldQuickStart'
+rootProject.name = 'UserTest'
 
 include ':app-service'
 include ':model'
@@ -28,3 +28,7 @@ include ':metrics'
 project(':metrics').projectDir = file('./infrastructure/helpers/metrics')
 include ':dynamo-db'
 project(':dynamo-db').projectDir = file('./infrastructure/driven-adapters/dynamo-db')
+include ':logger'
+project(':logger').projectDir = file('./infrastructure/helpers/logger')
+include ':redis'
+project(':redis').projectDir = file('./infrastructure/driven-adapters/redis')

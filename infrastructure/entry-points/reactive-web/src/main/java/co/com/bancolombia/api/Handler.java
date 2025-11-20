@@ -23,4 +23,14 @@ public class Handler {
     return userUseCase.getUserById(Integer.parseInt(serverRequest.pathVariable("id")))
         .flatMap(user -> ServerResponse.ok().bodyValue(user));
   }
+
+  public Mono<ServerResponse> listenGETAllUsers(ServerRequest serverRequest) {
+    return serverRequest.queryParam("name")
+        .map(name -> userUseCase.getUsersByName(name)
+            .collectList()
+            .flatMap(users -> ServerResponse.ok().bodyValue(users)))
+        .orElse(userUseCase.getAllUsers()
+            .collectList()
+            .flatMap(users -> ServerResponse.ok().bodyValue(users)));
+  }
 }

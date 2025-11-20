@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   application:
-    name: "ScaffoldQuickStart"
+    name: "UserTest"
   devtools:
     add-properties: false
   h2:
@@ -11,6 +11,21 @@ spring:
       path: "/h2"
   profiles:
     include: null
+    active: "${ENVIRONMENT:dev}"
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+  data:
+    redis:
+      port: 6379
+      host: redis
+logging:
+  structured:
+    format:
+      console: "ecs"
+  level:
+    root: "INFO"
+    '[co.com.bancolombia]': "${LOG_LEVEL:INFO}"
 management:
   endpoints:
     web:
@@ -40,25 +55,3 @@ aws:
   region: "us-east-1"
   accessKey: "dummy"
   secretKey: "dummy"
-resilience4j:
-  circuitbreaker:
-    instances:
-      testGet:
-        registerHealthIndicator: true
-        failureRateThreshold: 50
-        slowCallRateThreshold: 50
-        slowCallDurationThreshold: "2s"
-        permittedNumberOfCallsInHalfOpenState: 3
-        slidingWindowSize: 10
-        minimumNumberOfCalls: 10
-        waitDurationInOpenState: "10s"
-      testPost:
-        registerHealthIndicator: true
-        failureRateThreshold: 50
-        slowCallRateThreshold: 50
-        slowCallDurationThreshold: "2s"
-        permittedNumberOfCallsInHalfOpenState: 3
-        slidingWindowSize: 10
-        minimumNumberOfCalls: 10
-        waitDurationInOpenState: "10s"
-

@@ -6,6 +6,12 @@ aws:
   accessKey: "dummy"
   secretKey: "dummy"
 
+spring:
+  data:
+    redis:
+      port: 6379
+      host: redis
+
 adapter:
   dynamodb:
     userTable: "userTable"

@@ -13,7 +13,8 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 public class RouterRest {
   @Bean
   public RouterFunction<ServerResponse> routerFunction(Handler handler) {
-    return route(POST("/api/users/"), handler::listenPOSTCreateUser)
-        .andRoute(GET("/api/users/{id}"), handler::listenGETUserById);
+    return route(POST("/api/users"), handler::listenPOSTCreateUser)
+        .andRoute(GET("/api/users/{id}"), handler::listenGETUserById)
+        .andRoute(GET("/api/users"), handler::listenGETAllUsers);
   }
 }

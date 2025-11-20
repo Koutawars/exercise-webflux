@@ -7,20 +7,24 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.42/8365263844ebb62398e0dc33057ba10ba472d3b8/lombok-1.18.42.jar" />
         </processorPath>
-        <module name="ScaffoldQuickStart.reactive-web.main" />
-        <module name="ScaffoldQuickStart.dynamo-db.test" />
-        <module name="ScaffoldQuickStart.usecase.test" />
-        <module name="ScaffoldQuickStart.rest-consumer.test" />
-        <module name="ScaffoldQuickStart.app-service.test" />
-        <module name="ScaffoldQuickStart.app-service.main" />
-        <module name="ScaffoldQuickStart.metrics.test" />
-        <module name="ScaffoldQuickStart.dynamo-db.main" />
-        <module name="ScaffoldQuickStart.rest-consumer.main" />
-        <module name="ScaffoldQuickStart.usecase.main" />
-        <module name="ScaffoldQuickStart.metrics.main" />
-        <module name="ScaffoldQuickStart.model.test" />
-        <module name="ScaffoldQuickStart.reactive-web.test" />
-        <module name="ScaffoldQuickStart.model.main" />
+        <module name="UserTest.usecase.main" />
+        <module name="UserTest.metrics.test" />
+        <module name="UserTest.model.test" />
+        <module name="UserTest.model.main" />
+        <module name="UserTest.logger.main" />
+        <module name="UserTest.reactive-web.main" />
+        <module name="UserTest.redis.main" />
+        <module name="UserTest.app-service.main" />
+        <module name="UserTest.dynamo-db.test" />
+        <module name="UserTest.redis.test" />
+        <module name="UserTest.reactive-web.test" />
+        <module name="UserTest.app-service.test" />
+        <module name="UserTest.dynamo-db.main" />
+        <module name="UserTest.rest-consumer.main" />
+        <module name="UserTest.metrics.main" />
+        <module name="UserTest.logger.test" />
+        <module name="UserTest.rest-consumer.test" />
+        <module name="UserTest.usecase.test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="21" />
@@ -33,6 +37,12 @@
       <module name="ScaffoldQuickStart.app-service.test" options="-parameters" />
       <module name="ScaffoldQuickStart.main" options="-Amapstruct.suppressGeneratorTimestamp=true" />
       <module name="ScaffoldQuickStart.test" options="-Amapstruct.suppressGeneratorTimestamp=true" />
+      <module name="UserTest" options="-Amapstruct.suppressGeneratorTimestamp=true" />
+      <module name="UserTest.app-service" options="-parameters" />
+      <module name="UserTest.app-service.main" options="-parameters" />
+      <module name="UserTest.app-service.test" options="-parameters" />
+      <module name="UserTest.main" options="-Amapstruct.suppressGeneratorTimestamp=true" />
+      <module name="UserTest.test" options="-Amapstruct.suppressGeneratorTimestamp=true" />
     </option>
   </component>
 </project>
