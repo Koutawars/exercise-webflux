@@ -1,6 +1,8 @@
 apply plugin: 'org.springframework.boot'
 
 dependencies {
+	implementation project(':sqs-sender')
+	implementation project(':sqs-listener')
 	implementation project(':redis')
 	implementation project(':logger')
 	implementation 'software.amazon.awssdk:sts'
@@ -13,6 +15,8 @@ dependencies {
     implementation project(':model')
     implementation project(':usecase')
     implementation 'org.springframework.boot:spring-boot-starter'
+    implementation platform('io.awspring.cloud:spring-cloud-aws-dependencies:3.2.1')
+    implementation 'io.awspring.cloud:spring-cloud-aws-starter-sqs'
     runtimeOnly('org.springframework.boot:spring-boot-devtools')
     testImplementation 'com.tngtech.archunit:archunit:1.4.1'
     testImplementation 'com.fasterxml.jackson.core:jackson-databind'

@@ -32,3 +32,7 @@ include ':logger'
 project(':logger').projectDir = file('./infrastructure/helpers/logger')
 include ':redis'
 project(':redis').projectDir = file('./infrastructure/driven-adapters/redis')
+include ':sqs-listener'
+project(':sqs-listener').projectDir = file('./infrastructure/entry-points/sqs-listener')
+include ':sqs-sender'
+project(':sqs-sender').projectDir = file('./infrastructure/driven-adapters/sqs-sender')

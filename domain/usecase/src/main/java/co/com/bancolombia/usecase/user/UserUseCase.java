@@ -3,6 +3,7 @@ package co.com.bancolombia.usecase.user;
 import co.com.bancolombia.model.exception.UserNotFoundException;
 import co.com.bancolombia.model.users.User;
 import co.com.bancolombia.model.users.gateway.DirectoryActiveRepository;
+import co.com.bancolombia.model.users.gateway.UserMessagePublisher;
 import co.com.bancolombia.model.users.gateway.UserRepository;
 import co.com.bancolombia.model.users.gateway.UserCacheRepository;
 import co.com.bancolombia.model.utils.LogBuilder;
@@ -16,9 +17,10 @@ public class UserUseCase {
   private final DirectoryActiveRepository directoryActiveRepository;
   private final UserRepository userRepository;
   private final UserCacheRepository userCacheRepository;
+  private final UserMessagePublisher userMessagePublisher;
   private final Logger logger;
 
-  public Mono<User> saveUser(int id) {
+  public Mono<User> saveById(int id) {
     return Mono.deferContextual(context -> {
       LogBuilder logBuilder = logger.with(context)
           .key("id", id);
@@ -28,7 +30,21 @@ public class UserUseCase {
               .getUserById(id)
               .switchIfEmpty(Mono.error(new UserNotFoundException()))
               .flatMap(userRepository::save)
+              .flatMap(user -> userMessagePublisher.publishUserCreated(user)
+                  .thenReturn(user))
           )
+          .doOnSubscribe(unused -> logBuilder.info("Saving user"))
+          .doOnSuccess(unused -> logBuilder.info("User added"))
+          .doOnError(error -> logBuilder.error("Error adding user"));
+    });
+  }
+
+  public Mono<User> saveInUppercase(User user) {
+    return Mono.deferContextual(context -> {
+      user.toUpperCase();
+      LogBuilder logBuilder = logger.with(context)
+          .key("user", user);
+      return userRepository.save(user)
           .doOnSubscribe(unused -> logBuilder.info("Saving user"))
           .doOnSuccess(unused -> logBuilder.info("User added"))
           .doOnError(error -> logBuilder.error("Error adding user"));

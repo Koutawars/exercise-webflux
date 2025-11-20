@@ -15,7 +15,7 @@ public class Handler {
 
   public Mono<ServerResponse> listenPOSTCreateUser(ServerRequest serverRequest) {
     return serverRequest.bodyToMono(CreateUserDto.class)
-        .flatMap(body -> userUseCase.saveUser(body.getId()))
+        .flatMap(body -> userUseCase.saveById(body.getId()))
         .flatMap(user -> ServerResponse.ok().bodyValue(user));
   }
 

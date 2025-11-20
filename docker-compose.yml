@@ -5,7 +5,7 @@ services:
     ports:
       - "4566:4566"
     environment:
-      - SERVICES=dynamodb
+      - SERVICES=dynamodb,sqs
       - DEBUG=1
     volumes:
       - "./localstack-data:/var/lib/localstack"
@@ -26,7 +26,8 @@ services:
     entrypoint: >
       sh -c "
         sleep 15 &&
-        aws --endpoint-url=http://localstack:4566 dynamodb create-table --table-name userTable --attribute-definitions AttributeName=id,AttributeType=N --key-schema AttributeName=id,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
+        aws --endpoint-url=http://localstack:4566 dynamodb create-table --table-name userTable --attribute-definitions AttributeName=id,AttributeType=N --key-schema AttributeName=id,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 &&
+        aws --endpoint-url=http://localstack:4566 sqs create-queue --queue-name user-uppercase
       "
 
   app:
@@ -36,6 +37,7 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=local
       - AWS_DYNAMODB_ENDPOINT=http://localstack:4566
+      - AWS_SQS_ENDPOINT=http://localstack:4566
       - AWS_REGION=us-east-1
       - AWS_ACCESS_KEY=dummy
       - AWS_SECRET_KEY=dummy

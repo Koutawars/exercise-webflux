@@ -17,4 +17,9 @@ public class User {
   private String firstName;
   private String lastName;
   private String avatar;
+
+  public void toUpperCase() {
+    this.firstName = this.firstName.toUpperCase();
+    this.lastName = this.lastName.toUpperCase();
+  }
 }
