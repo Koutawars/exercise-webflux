@@ -16,13 +16,15 @@ import java.net.URI;
 @ConditionalOnMissingBean(SqsAsyncClient.class)
 public class SQSSenderConfig {
 
-    @Value("${aws.accessKey}")
-    private String accessKey;
+    private final String accessKey;
+    private final String secretKey;
 
-    @Value("${aws.secretKey}")
-    private String secretKey;
+  public SQSSenderConfig(@Value("${aws.accessKey}") String accessKey, @Value("${aws.secretKey}") String secretKey) {
+    this.accessKey = accessKey;
+    this.secretKey = secretKey;
+  }
 
-    @Bean
+  @Bean
     public SqsAsyncClient configSqs(SQSSenderProperties properties, MetricPublisher publisher) {
         return SqsAsyncClient.builder()
                 .endpointOverride(resolveEndpoint(properties))
