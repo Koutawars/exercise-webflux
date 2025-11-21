@@ -1,0 +1,33 @@
+aws:
+  dynamodb:
+    endpoint: "http://localstack:4566"
+    userTable: "userTable"
+  sqs:
+    endpoint: "http://localstack:4566"
+  region: "us-east-1"
+  accessKey: "dummy"
+  secretKey: "dummy"
+
+spring:
+  data:
+    redis:
+      port: 6379
+      host: redis
+  cloud:
+    aws:
+      credentials:
+        access-key: "dummy"
+        secret-key: "dummy"
+      region:
+        static: "us-east-1"
+      sqs:
+        endpoint: "http://localstack:4566"
+
+adapter:
+  dynamodb:
+    userTable: "userTable"
+    region: "us-east-1"
+  sqs:
+    region: "us-east-1"
+    queueUrl: "http://localstack:4566/000000000000/user-uppercase"
+    endpoint: "http://localstack:4566"

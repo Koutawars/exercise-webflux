@@ -1,0 +1,12 @@
+.gradle/
+build/
+.git/
+.gitignore
+README.md
+*.md
+localstack-data/
+.idea/
+*.iml
+*.iws
+*.ipr
+target/

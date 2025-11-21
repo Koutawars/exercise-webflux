@@ -1,0 +1,38 @@
+pluginManagement {
+    repositories {
+        //mavenLocal()
+        //maven { url = '...' }
+        gradlePluginPortal()
+    }
+}
+
+buildCache {
+    local {
+        directory = new File(rootDir, 'build-cache')
+    }
+}
+
+rootProject.name = 'UserTest'
+
+include ':app-service'
+include ':model'
+include ':usecase'
+project(':app-service').projectDir = file('./applications/app-service')
+project(':model').projectDir = file('./domain/model')
+project(':usecase').projectDir = file('./domain/usecase')
+include ':reactive-web'
+project(':reactive-web').projectDir = file('./infrastructure/entry-points/reactive-web')
+include ':rest-consumer'
+project(':rest-consumer').projectDir = file('./infrastructure/driven-adapters/rest-consumer')
+include ':metrics'
+project(':metrics').projectDir = file('./infrastructure/helpers/metrics')
+include ':dynamo-db'
+project(':dynamo-db').projectDir = file('./infrastructure/driven-adapters/dynamo-db')
+include ':logger'
+project(':logger').projectDir = file('./infrastructure/helpers/logger')
+include ':redis'
+project(':redis').projectDir = file('./infrastructure/driven-adapters/redis')
+include ':sqs-listener'
+project(':sqs-listener').projectDir = file('./infrastructure/entry-points/sqs-listener')
+include ':sqs-sender'
+project(':sqs-sender').projectDir = file('./infrastructure/driven-adapters/sqs-sender')

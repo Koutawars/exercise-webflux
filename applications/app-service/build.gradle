@@ -1,0 +1,44 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+	implementation project(':sqs-sender')
+	implementation project(':sqs-listener')
+	implementation project(':redis')
+	implementation project(':logger')
+	implementation 'software.amazon.awssdk:sts'
+	implementation 'org.reactivecommons.utils:object-mapper:0.1.0'
+	implementation project(':dynamo-db')
+	implementation project(':metrics')
+	implementation project(':rest-consumer')
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation project(':reactive-web')
+    implementation project(':model')
+    implementation project(':usecase')
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation platform('io.awspring.cloud:spring-cloud-aws-dependencies:3.2.1')
+    implementation 'io.awspring.cloud:spring-cloud-aws-starter-sqs'
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    testImplementation 'com.tngtech.archunit:archunit:1.4.1'
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    testImplementation platform('org.testcontainers:testcontainers-bom:1.20.4')
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:localstack'
+    testImplementation 'org.testcontainers:testcontainers'
+}
+
+tasks.register('explodedJar', Copy) {
+    with jar
+    into layout.buildDirectory.dir("exploded")
+}
+
+jar {
+    // To disable the *-plain.jar
+    enabled = false
+}
+
+bootJar {
+    // Sets output jar name
+    archiveFileName = "${project.getParent().getName()}.${archiveExtension.get()}"
+}
