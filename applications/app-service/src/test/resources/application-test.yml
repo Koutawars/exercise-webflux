@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: UserTest
+  autoconfigure:
+    exclude:
+      - io.awspring.cloud.autoconfigure.sqs.SqsAutoConfiguration
+      - io.awspring.cloud.autoconfigure.dynamodb.DynamoDbAutoConfiguration
+      - io.awspring.cloud.autoconfigure.core.AwsAutoConfiguration
+
+aws:
+  region: us-east-1
+  endpoint-override: http://localhost:4566
+  access-key-id: test
+  secret-access-key: test
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    co.com.bancolombia: INFO
+    org.springframework.cloud.aws: WARN
+    io.awspring.cloud: WARN
+    software.amazon.awssdk: WARN

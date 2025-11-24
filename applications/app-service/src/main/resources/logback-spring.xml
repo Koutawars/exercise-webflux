@@ -22,8 +22,19 @@
             </providers>
         </encoder>
     </appender>
-
+    <appender name="jsonConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <jsonGeneratorDecorator class="net.logstash.logback.mask.MaskingJsonGeneratorDecorator">
+                <defaultMask>**********</defaultMask>
+                <path>dni</path>
+                <path>email</path>
+                <path>password</path>
+                <path>phoneNumber</path>
+            </jsonGeneratorDecorator>
+        </encoder>
+    </appender>
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="jsonConsoleAppender"/>
     </root>
 </configuration>
